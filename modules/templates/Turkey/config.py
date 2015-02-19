@@ -26,7 +26,7 @@ def config(settings):
     #settings.base.system_name_short = T("Sahana")
 
     # PrePopulate data
-    settings.base.prepopulate = ("skeleton", "default/users")
+    settings.base.prepopulate = ("Turkey", "default/users")
 
     # Theme (folder to use for views/layout.html)
     #settings.base.theme = "Turkey"
@@ -46,7 +46,7 @@ def config(settings):
     # Restrict the Location Selector to just certain countries
     # NB This can also be over-ridden for specific contexts later
     # e.g. Activities filtered to those of parent Project
-    #settings.gis.countries = ("US",)
+    settings.gis.countries = ("TR",)
     # Uncomment to display the Map Legend as a floating DIV
     settings.gis.legend = "float"
     # Uncomment to Disable the Postcode selector in the LocationSelector
