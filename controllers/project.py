@@ -21,7 +21,7 @@ def index():
         redirect(URL(f="project", vars={"tasks":1}))
     else:
         # Bypass home page & go direct to filterable list of Projects
-        redirect(URL(f="project"))
+        redirect(URL(f="project", args="summary"))
 
 # =============================================================================
 def create():

@@ -28,3 +28,7 @@ i.menu {
 .menu_buttons a:first {
     margin-right:20px;
 }
+
+#home_menu p {
+    text-align: center;
+}

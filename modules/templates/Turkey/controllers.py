@@ -56,8 +56,124 @@ class index(S3CustomController):
         else:
             item = ""
         output["item"] = item
+        T = current.T
 
         self._view(THEME, "index.html")
-        return output
+        current.response.s3.stylesheets.append("../themes/CERT/homepage.css")
+
+        title = current.deployment_settings.get_system_name()
+
+        menus = [{"title":T("Organizations"),
+                  "icon":"sitemap",
+                  "description":T("Non-governmental organizations, community groups and government agencies and other disaster management stakeholders."),
+                  "module":"org",
+                  "function":"organisation",
+                  "buttons":[{"args":"summary",
+                              "icon":"list",
+                              "label":T("View"),
+                             },
+                             {"args":"create",
+                              "icon":"plus-sign",
+                              "label":T("Create"),
+                             }]
+                  },
+                 {"title":T("Offices"),
+                  "icon":"building",
+                  "description":T("The offices of organizations, their addresses and contact details."),
+                  "module":"org",
+                  "function":"office",
+                  "buttons":[{"args":"summary",
+                              "icon":"list",
+                              "label":T("View"),
+                             },
+                             {"args":"create",
+                              "icon":"plus-sign",
+                              "label":T("Create"),
+                             }]
+                  },
+                 {"title":T("Resources"),
+                  "icon":"wrench",
+                  "description":T("The resources such as tools and equipment available to organizations and neighborhoods to support disaster management activities."),
+                  "module":"org",
+                  "function":"resource",
+                  "buttons":[{"args":"summary",
+                              "icon":"list",
+                              "label":T("View"),
+                             },
+                             {"args":"create",
+                              "icon":"plus-sign",
+                              "label":T("Create"),
+                             }]
+                  },
+                 {"title":T("3W"),
+                  "icon":"map-marker",
+                  "description":T("The details and locations of projects carried out by organizations."),
+                  "module":"project",
+                  "function":"project",
+                  "buttons":[{"args":"summary",
+                              "icon":"list",
+                              "label":T("View"),
+                             },
+                             {"args":"create",
+                              "icon":"plus-sign",
+                              "label":T("Create"),
+                             }]
+                  },
+                 {"title":T("Staff"),
+                  "icon":"user",
+                  "description":T("The staff working for organizations and information on their contact details and trainings."),
+                  "module":"hrm",
+                  "function":"staff",
+                  "buttons":[{"args":"summary",
+                              "icon":"list",
+                              "label":T("View"),
+                             },
+                             {"args":"create",
+                              "icon":"plus-sign",
+                              "label":T("Create"),
+                             }]
+                  },
+                 {"title":T("Volunteers"),
+                  "icon":"group",
+                  "description":T("The volunteers supporting organizations and information on their contact details and trainings."),
+                  "module":"vol",
+                  "function":"volunteer",
+                  "buttons":[{"args":"summary",
+                              "icon":"list",
+                              "label":T("View"),
+                             },
+                             {"args":"create",
+                              "icon":"plus-sign",
+                              "label":T("Create"),
+                             }]
+                  },
+                 {"title":T("Camps"),
+                  "icon":"home",
+                  "description":T("The details and locations of camps providing shelter to people displaced by disasters and refugees, including registration of people in camps."),
+                  "module":"cr",
+                  "function":"shelter",
+                  "buttons":[{"args":"summary",
+                              "icon":"list",
+                              "label":T("View"),
+                             },
+                             {"args":"create",
+                              "icon":"plus-sign",
+                              "label":T("Create"),
+                             }]
+                  },
+                 {"title":T("Main Map"),
+                  "icon":"globe",
+                  "description":T("The Main Sahana Map displays multiple layers of information from Sahana and external sources."),
+                  "module":"gis",
+                  "function":"Index",
+                  "args":None,
+                  "buttons":[]
+                  },
+                 ] 
+
+        return dict(title = title,
+                    menus=menus,
+                    )
+
 
 # END =========================================================================

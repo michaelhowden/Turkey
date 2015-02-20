@@ -1,3 +1,31 @@
 {{extend "layout.html"}}
-<h2>{{=settings.get_system_name()}}</h2>
-{{=item}}
+<div id='home'>
+{{try:}}
+<h1>{{=title}}</h1>
+{{except:}}
+{{pass}}
+<div class='panel'>
+  <p>{{=T("Sahana is a platform which will help stakeholders to better manage their information and use it to make better decisions.")}}
+     {{=T("Sahana will also allow information to be easily shared between stakeholders to promote better coordination, collaboration and sharing of resources.")}}</p>
+</div>
+<div id='home_menu' class='row'>
+ {{for menu in menus:}}
+  {{if menu["function"] == "staff":}}
+    </div>
+    <div id='home_menu' class='row'>
+  {{pass}}
+  <div class='large-3 columns'>
+    <a href='{{=URL(c=menu["module"], f=menu["function"], args=menu.get("args","summary"))}}'>
+     <h2><i class='icon-{{=menu["icon"]}} menu'></i></h2>
+     <h2>{{=menu["title"]}}</h2>
+    </a>
+    <div class='menu_buttons'>
+      {{for button in menu["buttons"]:}} 
+       <a href='{{=URL(c=button.get("controller", menu["module"]), f=button.get("function", menu["function"]), args=button["args"])}}' class='button tiny secondary {{=button["args"]}}'>
+        <i class='icon-{{=button["icon"]}}'></i> {{=button["label"]}}</a>
+      {{pass}}
+    </div>
+    <p>{{=menu["description"]}}</p>
+  </div>
+ {{pass}}
+</div>

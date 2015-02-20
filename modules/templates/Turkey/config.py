@@ -31,6 +31,9 @@ def config(settings):
     # Theme (folder to use for views/layout.html)
     #settings.base.theme = "Turkey"
 
+    settings.base.system_name = T("Sahana Disaster Management Platform")
+    settings.base.system_name_short = T("Sahana")
+
     # Authentication settings
     # Should users be allowed to register themselves?
     #settings.security.self_registration = False
@@ -122,6 +125,14 @@ def config(settings):
     # Uncomment to disable people registration in shelters
     settings.cr.people_registration = False
 
+    settings.hrm.teams = False
+    settings.hrm.use_certificates = False
+    settings.hrm.use_skills = False
+    settings.hrm.use_credentials = False
+    settings.hrm.use_description = False
+    settings.hrm.vol_experience = False
+    
+    settings.gis.geocode_imported_addresses = "google"
     # -------------------------------------------------------------------------
     # Comment/uncomment modules here to disable/enable them
     # Modules menu is defined in modules/eden/menu.py
@@ -250,13 +261,13 @@ def config(settings):
         #    module_type = 10,
         #)),
         ("project", Storage(
-            name_nice = T("Projects"),
+            name_nice = T("3W"),
             #description = "Tracking of Projects, Activities and Tasks",
             restricted = True,
             module_type = 2
         )),
         ("cr", Storage(
-            name_nice = T("Shelters"),
+            name_nice = T("Camps"),
             #description = "Tracks the location, capacity and breakdown of victims in Shelters",
             restricted = True,
             module_type = 10
@@ -284,12 +295,12 @@ def config(settings):
         #   restricted = True,
         #   module_type = 10,
         #)),
-        #("stats", Storage(
-        #    name_nice = T("Statistics"),
-        #    #description = "Manages statistics",
-        #    restricted = True,
-        #    module_type = None,
-        #)),
+        ("stats", Storage(
+            name_nice = T("Statistics"),
+            #description = "Manages statistics",
+            restricted = True,
+            module_type = None,
+        )),
     ])
 
 # END =========================================================================

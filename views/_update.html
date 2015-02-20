@@ -5,6 +5,8 @@
 </div>
 <div class='row'>
  <div id='rheader' class='small-12 columns'>
+  {{try:}}{{=buttons["delete_btn"]}}{{except:}}{{pass}}
+  {{try:}}{{=deduplicate}}{{except:}}{{pass}}
   {{try:}}{{=XML(rheader)}}
  </div>
 </div>
@@ -17,18 +19,12 @@
  <div class='small-12 columns'>
   {{try:}}{{=H3(subtitle)}}{{except:}}{{pass}}
  </div>
- <div class='small-12 columns'>
-  {{try:}}{{=buttons["delete_btn"]}}{{except:}}{{pass}}
-  {{try:}}{{=deduplicate}}{{except:}}{{pass}}
- </div>
  <div id='map' class='small-12 columns'></div>
- <div class='small-12 columns'>
-  {{include "last_update.html"}}
   {{include "key.html"}}
   <div class='form-container'>
    {{try:}}{{=form}}{{except:}}{{pass}}
   </div>
- </div>
+  {{include "last_update.html"}}
 </div>
 <div class='row'>
  {{if s3.rfooter:}}

@@ -511,6 +511,22 @@ class S3OrganisationModel(S3Model):
                             ),
             ]
 
+        report_fields = ["sector_organisation.sector_id",
+                         "organisation_organisation_type.organisation_type_id"]
+        report_options = Storage(rows = report_fields,
+                                 cols = report_fields,
+                                 fact = ["count(name)",
+                                         "list(name)",
+                                         ],
+                                 defaults=Storage(rows = "sector_organisation.sector_id",
+                                                  cols = "organisation_organisation_type.organisation_type_id",
+                                                  fact = "count(id)",
+                                                  totals = True,
+                                                  chart = "barchart:rows",
+                                                  #table = "collapse",
+                                                  )
+                                 )
+
         location_context = settings.get_org_organisation_location_context()
 
         utablename = auth.settings.table_user_name
@@ -531,6 +547,7 @@ class S3OrganisationModel(S3Model):
                   onaccept = self.org_organisation_onaccept,
                   ondelete = self.org_organisation_ondelete,
                   referenced_by = [(utablename, "organisation_id")],
+                  report_options = report_options,
                   super_entity = "pr_pentity",
                   )
 
@@ -3466,6 +3483,7 @@ class S3FacilityModel(S3Model):
                                cols = "site_facility_type.facility_type_id",
                                fact = "count(id)",
                                totals = True,
+                               chart = "barchart:rows",
                                ),
             )
 
@@ -4100,14 +4118,16 @@ class S3OfficeModel(S3Model):
                        "organisation_id$acronym",
                        ]
 
-        list_fields = ["id",
-                       "name",
-                       "organisation_id", # Filtered in Component views
-                       "office_type_id",
-                       ]
+        report_fields = ["name",
+                         "organisation_id", # Filtered in Component views
+                         "office_type_id",
+                         ]
+
+        list_fields = ["id"] + report_fields
 
         for level in levels:
             lfield = "location_id$%s" % level
+            report_fields.append(lfield)
             text_fields.append(lfield)
 
         list_fields += [(T("Address"), "location_id$addr_street"),
@@ -4131,6 +4151,21 @@ class S3OfficeModel(S3Model):
                                  #hidden = True,
                                  ),
                 ]
+
+        report_options = Storage(
+            rows = report_fields,
+            cols = report_fields,
+            fact = ["count(id)",
+                    "list(name)",
+                    ],
+            defaults = Storage(rows = lfield, # Lowest-level of hierarchy
+                               cols = "office_type_id",
+                               fact = "count(id)",
+                               totals = True,
+                               chart = "barchart:rows",
+                               ),
+            )
+
 
         configure(tablename,
                   context = {"location": "location_id",
@@ -4158,6 +4193,7 @@ class S3OfficeModel(S3Model):
                                       "recv",
                                       "address",
                                       ),
+                  report_options = report_options,
                   super_entity = ("doc_entity", "pr_pentity", "org_site"),
                   update_realm = True,
                   )
@@ -4411,7 +4447,7 @@ def org_organisation_logo(id,
                    _height=60,
                    )
         return logo
-    return DIV() # no logo so return an empty div
+    return ""
 
 # =============================================================================
 def org_parents(organisation_id, path=[]):

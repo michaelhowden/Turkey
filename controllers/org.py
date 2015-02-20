@@ -14,7 +14,7 @@ if not settings.has_module(module):
 def index():
     """ Module's Home Page """
 
-    return s3db.cms_index(module, alt_function="index_alt")
+    redirect(URL(f="organisation", args="summary"))
 
 # -----------------------------------------------------------------------------
 def index_alt():
@@ -29,7 +29,7 @@ def index_alt():
         redirect(URL(f="facility"))
     else:
         # Just redirect to the list of Organisations
-        redirect(URL(f="organisation"))
+        redirect(URL(f="organisation", args="summary"))
 
 # -----------------------------------------------------------------------------
 def group():

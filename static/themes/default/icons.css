@@ -76,6 +76,9 @@
 .icon-briefcase:before {
   content: "\f0b1";
 }
+.icon-building:before {
+  content: "\f0f7";
+}
 .icon-calendar:before {
   /* Used for Planned Events & Date fields */
   content: "\f073";
@@ -125,6 +128,9 @@
 }
 .icon-fullscreen:before {
   content: "\f0b2";
+}
+.icon-group:before {
+  content: "\f0c0";
 }
 .icon-home:before {
   /* Used for Sites */
