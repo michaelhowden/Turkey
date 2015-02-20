@@ -1,0 +1,10 @@
+Module,Resource,Name,Body
+org,organisation,,"Non-governmental organizations, community groups and government agencies and other disaster management stakeholders."
+org,office,,"The offices of organizations, their addresses and contact details."
+org,resource,,The resources such as tools and equipment available to organizations and neighborhoods to support disaster management activities.
+project,project,,The details and locations of projects carried out by organizations.
+hrm,staff,,The staff working for organizations and information on their contact details and trainings.
+vol,volunteer,,The volunteers supporting organizations and information on their contact details and trainings.
+cr,shelter,,"The details and locations of camps providing shelter to people displaced by disasters and refugees, including registration of people in camps."
+,,,
+,,,
