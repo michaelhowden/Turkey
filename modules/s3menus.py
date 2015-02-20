@@ -1466,10 +1466,6 @@ class S3OptionsMenu(object):
                         M("Map", m="map"),
                         M("Import", m="import")
                     ),
-                    M("Faciliites", f="facility", m="summary")(
-                        M("Create", m="create"),
-                        M("Import", m="import")
-                    ),
                     M("Resource Inventory", f="resource", m="summary")(
                         M("Create", m="create"),
                         M("Import", m="import")
@@ -1479,10 +1475,6 @@ class S3OptionsMenu(object):
                         M("Create", m="create"),
                     ),
                     M("Office Types", f="office_type",
-                      restrict=[ADMIN])(
-                        M("Create", m="create"),
-                    ),
-                    M("Facility Types", f="facility_type",
                       restrict=[ADMIN])(
                         M("Create", m="create"),
                     ),

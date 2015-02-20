@@ -31,6 +31,9 @@ def config(settings):
     # Theme (folder to use for views/layout.html)
     #settings.base.theme = "Turkey"
 
+    settings.base.system_name = T("Sahana Disaster Management Platform")
+    settings.base.system_name_short = T("Sahana")
+
     # Authentication settings
     # Should users be allowed to register themselves?
     #settings.security.self_registration = False
