@@ -131,6 +131,8 @@ def config(settings):
     settings.hrm.use_credentials = False
     settings.hrm.use_description = False
     settings.hrm.vol_experience = False
+    
+    settings.gis.geocode_imported_addresses = "google"
     # -------------------------------------------------------------------------
     # Comment/uncomment modules here to disable/enable them
     # Modules menu is defined in modules/eden/menu.py

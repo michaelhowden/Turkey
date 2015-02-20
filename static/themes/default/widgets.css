@@ -49,10 +49,6 @@ p.legend em {
     padding: 2px;
     margin: 2px 0 2px 0;
 }
-.form-container form input.string,
-.form-container form textarea  {
-    width: 500px;
-}
 .form-container form input.date {
     width: auto;
 }
@@ -559,6 +555,13 @@ ul.ui-autocomplete {
 .req_key {
     color: red;
     font-weight: bold;
+    font-size: 0.875rem;
+}
+.req_key {
+   padding: 10px;
+   position: absolute;
+   right: 30px;
+   z-index: 1;
 }
 
 /* Help Popup */
@@ -886,6 +889,7 @@ span.tab_next_inactive a {
 }
 #delete-btn {
     margin-bottom: 8px;
+    float: right;
 }
 #markDuplicate {
     float: right;

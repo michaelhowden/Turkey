@@ -89,7 +89,17 @@ form .form-row {
 }
 form .form-row > .columns > label {
   font-weight: bold;
+  float: left;
+  width: 120px;
+  text-align: right;
+  padding-right: 10px;
 }
+/*
+.form-container .controls input,
+.form-container form button {
+    margin-left: 150px;
+}*/
+
 form label.inline {
   padding: 0;
 }
