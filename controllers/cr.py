@@ -23,7 +23,7 @@ def index_alt():
     """
 
     # Just redirect to the list of Shelters
-    redirect(URL(f="shelter"))
+    redirect(URL(f="shelter", args = "summary"))
 
 # =============================================================================
 def shelter_type():

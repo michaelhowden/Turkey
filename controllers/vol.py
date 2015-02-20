@@ -22,7 +22,7 @@ def index():
         redirect(URL(f="person"))
     else:
         # Bypass home page & go direct to Volunteers Summary
-        redirect(URL(f="volunteer", args=["summary"]))
+        redirect(URL(f="volunteer", args="summary"))
 
 # =============================================================================
 # People

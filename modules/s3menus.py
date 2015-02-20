@@ -596,10 +596,8 @@ class S3OptionsMenu(object):
             types = "Shelter Settings"
 
         return M(c="cr")(
-                    M(shelter, f="shelter")(
+                    M(shelter, f="shelter", m="summary")(
                         M("Create", m="create"),
-                        M("Map", m="map"),
-                        M("Report", m="report"),
                         M("Import", m="import", p="create"),
                     ),
                     M(types, restrict=[ADMIN])(
@@ -983,6 +981,8 @@ class S3OptionsMenu(object):
         is_org_admin = lambda i: s3.hrm.orgs and True or \
                                  ADMIN in s3.roles
         settings = current.deployment_settings
+        skills = lambda i: settings.get_hrm_use_skills()
+        certificates = lambda i: settings.get_hrm_use_certificates()
         teams = settings.get_hrm_teams()
         use_teams = lambda i: teams
         vol_enabled = lambda i: settings.has_module("vol")
@@ -991,7 +991,8 @@ class S3OptionsMenu(object):
                     M(settings.get_hrm_staff_label(), f="staff", m="summary",
                       check=manager_mode)(
                         M("Create", m="create"),
-                        M("Search by Skills", f="competency"),
+                        M("Search by Skills", f="competency",
+                          check=skills),
                         M("Import", f="person", m="import",
                           vars={"group":"staff"}, p="create"),
                     ),
@@ -1013,7 +1014,8 @@ class S3OptionsMenu(object):
                         M("Create", m="create"),
                     ),
                     M("Skill Catalog", f="skill",
-                      check=manager_mode)(
+                      check=[manager_mode, 
+                             skills])(
                         M("Create", m="create"),
                         #M("Skill Provisions", f="skill_provision"),
                     ),
@@ -1029,7 +1031,8 @@ class S3OptionsMenu(object):
                         #M("Course Certificates", f="course_certificate"),
                     ),
                     M("Certificate Catalog", f="certificate",
-                      check=manager_mode)(
+                      check=[manager_mode,
+                             certificates])(
                         M("Create", m="create"),
                         #M("Skill Equivalence", f="certificate_skill"),
                     ),
@@ -1069,6 +1072,8 @@ class S3OptionsMenu(object):
         show_programmes = lambda i: settings.get_hrm_vol_experience() == "programme"
         show_tasks = lambda i: settings.has_module("project") and \
                                settings.get_project_mode_task()
+        skills = lambda i: settings.get_hrm_use_skills()
+        certificates = lambda i: settings.get_hrm_use_certificates()
         teams = settings.get_hrm_teams()
         use_teams = lambda i: teams
         show_staff = lambda i: settings.get_hrm_show_staff()
@@ -1077,7 +1082,8 @@ class S3OptionsMenu(object):
                     M("Volunteers", f="volunteer", m="summary",
                       check=[manager_mode])(
                         M("Create", m="create"),
-                        M("Search by skills", f="competency"),
+                        M("Search by skills", f="competency",
+                          check=skills),
                         M("Import", f="person", m="import",
                           vars={"group":"volunteer"}, p="create"),
                     ),
@@ -1099,7 +1105,8 @@ class S3OptionsMenu(object):
                         M("Create", m="create"),
                     ),
                     M("Skill Catalog", f="skill",
-                      check=manager_mode)(
+                      check=[manager_mode,
+                             skills])(
                         M("Create", m="create"),
                         #M("Skill Provisions", f="skill_provision"),
                     ),
@@ -1115,7 +1122,8 @@ class S3OptionsMenu(object):
                         #M("Course Certificates", f="course_certificate"),
                     ),
                     M("Certificate Catalog", f="certificate",
-                      check=manager_mode)(
+                      check=[manager_mode,
+                             certificates])(
                         M("Create", m="create"),
                         #M("Skill Equivalence", f="certificate_skill"),
                     ),
@@ -1449,16 +1457,20 @@ class S3OptionsMenu(object):
                              else "Sectors"
 
         return M(c="org")(
-                    M("Organizations", f="organisation")(
+                    M("Organizations", f="organisation", m="summary")(
                         M("Create", m="create"),
                         M("Import", m="import")
                     ),
-                    M("Offices", f="office")(
+                    M("Offices", f="office", m="summary")(
                         M("Create", m="create"),
                         M("Map", m="map"),
                         M("Import", m="import")
                     ),
-                    M("Facilities", f="facility", m="summary")(
+                    M("Faciliites", f="facility", m="summary")(
+                        M("Create", m="create"),
+                        M("Import", m="import")
+                    ),
+                    M("Resource Inventory", f="resource", m="summary")(
                         M("Create", m="create"),
                         M("Import", m="import")
                     ),
@@ -1543,7 +1555,7 @@ class S3OptionsMenu(object):
         if settings.get_project_mode_3w():
             if community:
                 menu(
-                     M("Projects", f="project")(
+                     M("Projects", f="project", m="summary")(
                         M("Create", m="create"),
                      ),
                      M("Communities", f="location")(

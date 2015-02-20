@@ -725,7 +725,7 @@ button.close {
     width: 0px;
 }
 
-/* Resource Header */
+/* Resource Header @ToDo: Migrate to and merge with style.css*/
 #rheader {
     margin-bottom: 0.75em;
 }
@@ -739,7 +739,7 @@ button.close {
     font-weight: bold;
 }
 
-/* Tabs */
+/* Tabs @ToDo: Migrate to and merge with style.css explore using foundation tabs*/
 div.tabs {
     width: 100%;
     clear: left;

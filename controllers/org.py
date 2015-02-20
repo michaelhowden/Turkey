@@ -29,7 +29,7 @@ def index_alt():
         redirect(URL(f="facility"))
     else:
         # Just redirect to the list of Organisations
-        redirect(URL(f="organisation"))
+        redirect(URL(f="organisation", args="summary"))
 
 # -----------------------------------------------------------------------------
 def group():
