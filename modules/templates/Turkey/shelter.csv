@@ -1,1 +1,11 @@
-Organisation,Branch,Name,Country,L1,L2,L3,Address,Poctcode,Lat,Lon,Capacity,Population,Status
+"Organisation","Branch","Name","Country","L1","L2","L3","Address","Postcode","Lat","Lon","Capacity","Population","Status"
+"Mahalle Afet Gönüllüleri Vakfı",,"Camp 1",,,,,,,37.049989207,35.2433225,,,"Open"
+"Mahalle Afet Gönüllüleri Vakfı",,"Camp 2",,,,,,,37.0716141343,37.3966428125,,,"Open"
+"Mahalle Afet Gönüllüleri Vakfı",,"Camp 3",,,,,,,37.0365428259,39.1544553125,,,"Open"
+"Mahalle Afet Gönüllüleri Vakfı",,"Camp 4",,,,,,,37.4214346652,42.45035375,,,"Open"
+"Mahalle Afet Gönüllüleri Vakfı",,"Camp 5",,,,,,,,,,,"Open"
+"Mahalle Afet Gönüllüleri Vakfı",,"Camp 6",,,,,,,,,,,"Open"
+"Mahalle Afet Gönüllüleri Vakfı",,"Camp 7",,,,,,,,,,,"Closed"
+"Mahalle Afet Gönüllüleri Vakfı",,"Camp 8",,,,,,,,,,,"Closed"
+"Mahalle Afet Gönüllüleri Vakfı",,"Camp 9",,,,,,,,,,,"Closed"
+"Mahalle Afet Gönüllüleri Vakfı",,"Camp 10",,,,,,,,,,,"Closed"
