@@ -57,6 +57,7 @@ def config(settings):
     # Uncomment to show the Print control:
     # http://eden.sahanafoundation.org/wiki/UserGuidelines/Admin/MapPrinting
     #settings.gis.print_button = True
+    settings.gis.geocode_imported_addresses = "google"
 
     # L10n settings
     # Languages used in the deployment (used for Language Toolbar & GIS Locations)
@@ -132,7 +133,11 @@ def config(settings):
     settings.hrm.use_description = False
     settings.hrm.vol_experience = False
     
-    settings.gis.geocode_imported_addresses = "google"
+    # Uncomment this to use settings suitable for a global/regional organisation (e.g. DRR)
+    settings.project.mode_3w = True
+    # Uncomment this to use multiple Organisations per project
+    settings.project.multiple_organisations = True
+
     # -------------------------------------------------------------------------
     # Comment/uncomment modules here to disable/enable them
     # Modules menu is defined in modules/eden/menu.py
