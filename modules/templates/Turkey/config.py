@@ -227,31 +227,31 @@ def config(settings):
             restricted = True,
             module_type = 10,
         )),
-        #("msg", Storage(
-        #    name_nice = T("Messaging"),
-        #    #description = "Sends & Receives Alerts via Email & SMS",
-        #    restricted = True,
-        #    # The user-visible functionality of this module isn't normally required. Rather it's main purpose is to be accessed from other modules.
-        #    module_type = None,
-        #)),
-        #("supply", Storage(
-        #    name_nice = T("Supply Chain Management"),
-        #    #description = "Used within Inventory Management, Request Management and Asset Management",
-        #    restricted = True,
-        #    module_type = None, # Not displayed
-        #)),
-        #("inv", Storage(
-        #    name_nice = T("Warehouses"),
-        #    #description = "Receiving and Sending Items",
-        #    restricted = True,
-        #    module_type = 4
-        #)),
-        #("asset", Storage(
-        #    name_nice = T("Assets"),
-        #    #description = "Recording and Assigning Assets",
-        #    restricted = True,
-        #    module_type = 5,
-        #)),
+        ("msg", Storage(
+            name_nice = T("Messaging"),
+            #description = "Sends & Receives Alerts via Email & SMS",
+            restricted = True,
+            # The user-visible functionality of this module isn't normally required. Rather it's main purpose is to be accessed from other modules.
+            module_type = None,
+        )),
+        ("supply", Storage(
+            name_nice = T("Supply Chain Management"),
+            #description = "Used within Inventory Management, Request Management and Asset Management",
+            restricted = True,
+            module_type = None, # Not displayed
+        )),
+        ("inv", Storage(
+            name_nice = T("Warehouses"),
+            #description = "Receiving and Sending Items",
+            restricted = True,
+            module_type = 4
+        )),
+        ("asset", Storage(
+            name_nice = T("Assets"),
+            #description = "Recording and Assigning Assets",
+            restricted = True,
+            module_type = 5,
+        )),
         # Vehicle depends on Assets
         #("vehicle", Storage(
         #    name_nice = T("Vehicles"),
@@ -259,12 +259,12 @@ def config(settings):
         #    restricted = True,
         #    module_type = 10,
         #)),
-        #("req", Storage(
-        #    name_nice = T("Requests"),
-        #    #description = "Manage requests for supplies, assets, staff or other resources. Matches against Inventories where supplies are requested.",
-        #    restricted = True,
-        #    module_type = 10,
-        #)),
+        ("req", Storage(
+            name_nice = T("Requests"),
+            #description = "Manage requests for supplies, assets, staff or other resources. Matches against Inventories where supplies are requested.",
+            restricted = True,
+            module_type = 10,
+        )),
         ("project", Storage(
             name_nice = T("3W"),
             #description = "Tracking of Projects, Activities and Tasks",
@@ -277,12 +277,12 @@ def config(settings):
             restricted = True,
             module_type = 10
         )),
-        #("hms", Storage(
-        #    name_nice = T("Hospitals"),
-        #    #description = "Helps to monitor status of hospitals",
-        #    restricted = True,
-        #    module_type = 10
-        #)),
+        ("hms", Storage(
+            name_nice = T("Hospitals"),
+            #description = "Helps to monitor status of hospitals",
+            restricted = True,
+            module_type = 10
+        )),
         #("dvr", Storage(
         #   name_nice = T("Disaster Victim Registry"),
         #   #description = "Allow affected individuals & households to register to receive compensation and distributions",
@@ -295,11 +295,11 @@ def config(settings):
         #    restricted = True,
         #    module_type = 10,
         #)),
-        #("transport", Storage(
-        #   name_nice = T("Transport"),
-        #   restricted = True,
-        #   module_type = 10,
-        #)),
+        ("transport", Storage(
+           name_nice = T("Transport"),
+           restricted = True,
+           module_type = 10,
+        )),
         ("stats", Storage(
             name_nice = T("Statistics"),
             #description = "Manages statistics",
