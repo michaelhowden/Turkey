@@ -244,7 +244,7 @@ def config(settings):
             name_nice = T("Warehouses"),
             #description = "Receiving and Sending Items",
             restricted = True,
-            module_type = 4
+            module_type = 10
         )),
         ("asset", Storage(
             name_nice = T("Assets"),
