@@ -41,7 +41,7 @@ def config(settings):
     #settings.auth.registration_requires_verification = True
     # Do new users need to be approved by an administrator prior to being able to login?
     #settings.auth.registration_requires_approval = True
-    #settings.auth.registration_requests_organisation = True
+    settings.auth.registration_requests_organisation = True
 
     # Approval emails get sent to all admins
     settings.mail.approver = "ADMIN"
