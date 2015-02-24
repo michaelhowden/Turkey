@@ -113,7 +113,6 @@ def config(settings):
         "USD" : T("United States Dollars"),
     }
     settings.fin.currency_default = "TRL"
-    
 
     # Security Policy
     # http://eden.sahanafoundation.org/wiki/S3AAA#System-widePolicy
