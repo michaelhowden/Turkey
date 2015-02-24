@@ -105,6 +105,15 @@ def config(settings):
     settings.L10n.translate_gis_location = True
     # Uncomment this to Translate Organisation Names/Acronyms
     settings.L10n.translate_org_organisation = True
+    # Finance settings
+    settings.fin.currencies = {
+        "EUR" : T("Euros"),
+        "GBP" : T("Great British Pounds"),
+        "TRL" : T("Turkish Lira"),
+        "USD" : T("United States Dollars"),
+    }
+    settings.fin.currency_default = "TRL"
+    
 
     # Security Policy
     # http://eden.sahanafoundation.org/wiki/S3AAA#System-widePolicy
