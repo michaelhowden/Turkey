@@ -105,7 +105,7 @@ class index(S3CustomController):
                               "label":T("Create"),
                              }]
                   },
-                 {"title":T("3W"),
+                 {"title":T("Projects"),
                   "icon":"map-marker",
                   "description":T("The details and locations of projects carried out by organizations."),
                   "module":"project",

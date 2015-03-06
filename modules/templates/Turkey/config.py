@@ -26,7 +26,7 @@ def config(settings):
     #settings.base.system_name_short = T("Sahana")
 
     # PrePopulate data
-    settings.base.prepopulate = ("Turkey", "default/users")
+    settings.base.prepopulate = ("Turkey", "default/users",)
 
     # Theme (folder to use for views/layout.html)
     #settings.base.theme = "Turkey"
@@ -49,7 +49,7 @@ def config(settings):
     # Restrict the Location Selector to just certain countries
     # NB This can also be over-ridden for specific contexts later
     # e.g. Activities filtered to those of parent Project
-    settings.gis.countries = ("TR",)
+    settings.gis.countries = ("US",)
     # Uncomment to display the Map Legend as a floating DIV
     settings.gis.legend = "float"
     # Uncomment to Disable the Postcode selector in the LocationSelector
@@ -68,7 +68,7 @@ def config(settings):
     #    ("fr", "Français"),
     #    ("de", "Deutsch"),
     #    ("el", "ελληνικά"),
-    #    ("es", "Español"),
+        ("es", "Español"),
     #    ("it", "Italiano"),
     #    ("ja", "日本語"),
     #    ("km", "ភាសាខ្មែរ"),
@@ -88,7 +88,7 @@ def config(settings):
     #    ("zh-tw", "中文 (繁體)"),
     ])
     # Default language for Language Toolbar (& GIS Locations in future)
-    settings.L10n.default_language = "tr"
+    settings.L10n.default_language = "en"
     # Uncomment to Hide the language toolbar
     #settings.L10n.display_toolbar = False
     # Default timezone for users
@@ -126,12 +126,16 @@ def config(settings):
     settings.cr.people_registration = False
 
     settings.hrm.teams = False
-    settings.hrm.use_certificates = False
-    settings.hrm.use_skills = False
-    settings.hrm.use_credentials = False
+    #settings.hrm.use_certificates = False
+    #settings.hrm.use_skills = False
+    #settings.hrm.use_credentials = False
     settings.hrm.use_description = False
     settings.hrm.vol_experience = False
-    
+
+    settings.project.mode_3w = True
+    # Uncomment this to use DRR (Disaster Risk Reduction) extensions
+    settings.project.mode_drr = True
+
     settings.gis.geocode_imported_addresses = "google"
     # -------------------------------------------------------------------------
     # Comment/uncomment modules here to disable/enable them
@@ -229,24 +233,24 @@ def config(settings):
         #    # The user-visible functionality of this module isn't normally required. Rather it's main purpose is to be accessed from other modules.
         #    module_type = None,
         #)),
-        #("supply", Storage(
-        #    name_nice = T("Supply Chain Management"),
-        #    #description = "Used within Inventory Management, Request Management and Asset Management",
-        #    restricted = True,
-        #    module_type = None, # Not displayed
-        #)),
-        #("inv", Storage(
-        #    name_nice = T("Warehouses"),
-        #    #description = "Receiving and Sending Items",
-        #    restricted = True,
-        #    module_type = 4
-        #)),
-        #("asset", Storage(
-        #    name_nice = T("Assets"),
-        #    #description = "Recording and Assigning Assets",
-        #    restricted = True,
-        #    module_type = 5,
-        #)),
+        ("supply", Storage(
+            name_nice = T("Supply Chain Management"),
+            #description = "Used within Inventory Management, Request Management and Asset Management",
+            restricted = True,
+            module_type = None, # Not displayed
+        )),
+        ("inv", Storage(
+            name_nice = T("Warehouses"),
+            #description = "Receiving and Sending Items",
+            restricted = True,
+            module_type = 10
+        )),
+        ("asset", Storage(
+            name_nice = T("Assets"),
+            #description = "Recording and Assigning Assets",
+            restricted = True,
+            module_type = 10,
+        )),
         # Vehicle depends on Assets
         #("vehicle", Storage(
         #    name_nice = T("Vehicles"),
@@ -261,11 +265,17 @@ def config(settings):
         #    module_type = 10,
         #)),
         ("project", Storage(
-            name_nice = T("3W"),
+            name_nice = T("Projects"),
             #description = "Tracking of Projects, Activities and Tasks",
             restricted = True,
             module_type = 2
         )),
+        ("survey", Storage(
+                name_nice = T("Assessments"),
+                #description = "Create, enter, and manage surveys.",
+                restricted = True,
+                module_type = 10,
+            )),
         ("cr", Storage(
             name_nice = T("Camps"),
             #description = "Tracks the location, capacity and breakdown of victims in Shelters",

@@ -1611,7 +1611,7 @@ class S3OptionsMenu(object):
 
         elif settings.get_project_mode_task():
             menu(
-                 M("Projects", f="project")(
+                 M("Projects", f="project", m="summary")(
                     M("Create", m="create"),
                     M("Open Tasks for Project", vars={"tasks":1}),
                  ),
