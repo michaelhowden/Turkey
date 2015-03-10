@@ -4310,7 +4310,7 @@ class S3ProjectTaskModel(S3Model):
                            requires = IS_LENGTH(maxsize=100, minsize=1),
                            ),
                      Field("description", "text",
-                           label = T("Detailed Description/URL"),
+                           label = T("Detailed Description"),
                            comment = DIV(_class="tooltip",
                                          _title="%s|%s" % (T("Detailed Description/URL"),
                                                            T("Please provide as much detail as you can, including the URL(s) where the bug occurs or you'd like the new feature to go."))),

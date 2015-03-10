@@ -41,7 +41,7 @@ def config(settings):
     #settings.auth.registration_requires_verification = True
     # Do new users need to be approved by an administrator prior to being able to login?
     #settings.auth.registration_requires_approval = True
-    #settings.auth.registration_requests_organisation = True
+    settings.auth.registration_requests_organisation = True
 
     # Approval emails get sent to all admins
     settings.mail.approver = "ADMIN"
@@ -57,6 +57,7 @@ def config(settings):
     # Uncomment to show the Print control:
     # http://eden.sahanafoundation.org/wiki/UserGuidelines/Admin/MapPrinting
     #settings.gis.print_button = True
+    settings.gis.geocode_imported_addresses = "google"
 
     # L10n settings
     # Languages used in the deployment (used for Language Toolbar & GIS Locations)
@@ -104,6 +105,14 @@ def config(settings):
     settings.L10n.translate_gis_location = True
     # Uncomment this to Translate Organisation Names/Acronyms
     settings.L10n.translate_org_organisation = True
+    # Finance settings
+    settings.fin.currencies = {
+        "EUR" : T("Euros"),
+        "GBP" : T("Great British Pounds"),
+        "TRL" : T("Turkish Lira"),
+        "USD" : T("United States Dollars"),
+    }
+    settings.fin.currency_default = "TRL"
 
     # Security Policy
     # http://eden.sahanafoundation.org/wiki/S3AAA#System-widePolicy
@@ -139,6 +148,11 @@ def config(settings):
     settings.project.mode_task = True
 
     settings.gis.geocode_imported_addresses = "google"
+    # Uncomment this to use settings suitable for a global/regional organisation (e.g. DRR)
+    settings.project.mode_3w = True
+    # Uncomment this to use multiple Organisations per project
+    settings.project.multiple_organisations = True
+
     # -------------------------------------------------------------------------
     # Comment/uncomment modules here to disable/enable them
     # Modules menu is defined in modules/eden/menu.py
@@ -260,12 +274,12 @@ def config(settings):
         #    restricted = True,
         #    module_type = 10,
         #)),
-        #("req", Storage(
-        #    name_nice = T("Requests"),
-        #    #description = "Manage requests for supplies, assets, staff or other resources. Matches against Inventories where supplies are requested.",
-        #    restricted = True,
-        #    module_type = 10,
-        #)),
+        ("req", Storage(
+            name_nice = T("Requests"),
+            #description = "Manage requests for supplies, assets, staff or other resources. Matches against Inventories where supplies are requested.",
+            restricted = True,
+            module_type = 10,
+        )),
         ("project", Storage(
             name_nice = T("Projects"),
             #description = "Tracking of Projects, Activities and Tasks",
@@ -284,18 +298,17 @@ def config(settings):
             restricted = True,
             module_type = 10
         )),
-        #("hms", Storage(
-        #    name_nice = T("Hospitals"),
-        #    #description = "Helps to monitor status of hospitals",
-        #    restricted = True,
-        #    module_type = 10
-        #)),
+        ("hms", Storage(
+            name_nice = T("Hospitals"),
+            #description = "Helps to monitor status of hospitals",
+            restricted = True,
+            module_type = 10
+        )),
         #("dvr", Storage(
         #   name_nice = T("Disaster Victim Registry"),
         #   #description = "Allow affected individuals & households to register to receive compensation and distributions",
         #   restricted = True,
         #   module_type = 10,
-        #)),
         ("event", Storage(
             name_nice = T("Events"),
             #description = "Activate Events (e.g. from Scenario templates) for allocation of appropriate Resources (Human, Assets & Facilities).",
