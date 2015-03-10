@@ -3362,9 +3362,6 @@ class S3FacilityModel(S3Model):
             msg_record_deleted = T("Facility deleted"),
             msg_list_empty = T("No Facilities currently registered"))
 
-        # Which levels of Hierarchy are we using?
-        levels = current.gis.get_relevant_hierarchy_levels()
-
         text_fields = ["name",
                        "code",
                        "comments",
@@ -3377,6 +3374,8 @@ class S3FacilityModel(S3Model):
                          "organisation_id",
                          ]
 
+        # Which levels of Hierarchy are we using?
+        levels = current.gis.get_relevant_hierarchy_levels()
         for level in levels:
             lfield = "location_id$%s" % level
             report_fields.append(lfield)

@@ -1,11 +1,11 @@
-"Organisation","Branch","Name","Country","L1","L2","L3","Address","Postcode","Lat","Lon","Capacity","Population","Status"
-"Mahalle Afet Gönüllüleri Vakfı",,"Camp 1",,,,,,,37.049989207,35.2433225,,,"Open"
-"Mahalle Afet Gönüllüleri Vakfı",,"Camp 2",,,,,,,37.0716141343,37.3966428125,,,"Open"
-"Mahalle Afet Gönüllüleri Vakfı",,"Camp 3",,,,,,,37.0365428259,39.1544553125,,,"Open"
-"Mahalle Afet Gönüllüleri Vakfı",,"Camp 4",,,,,,,37.4214346652,42.45035375,,,"Open"
-"Mahalle Afet Gönüllüleri Vakfı",,"Camp 5",,,,,,,,,,,"Open"
-"Mahalle Afet Gönüllüleri Vakfı",,"Camp 6",,,,,,,,,,,"Open"
-"Mahalle Afet Gönüllüleri Vakfı",,"Camp 7",,,,,,,,,,,"Closed"
-"Mahalle Afet Gönüllüleri Vakfı",,"Camp 8",,,,,,,,,,,"Closed"
-"Mahalle Afet Gönüllüleri Vakfı",,"Camp 9",,,,,,,,,,,"Closed"
-"Mahalle Afet Gönüllüleri Vakfı",,"Camp 10",,,,,,,,,,,"Closed"
+Organisation,Branch,Name,Country,L1,L2,L3,Address,Postcode,Lat,Lon,Capacity,Population,Status
+County of Hawaii,,Camp 1,,,,,,,19.48850979,-155.7011259,,,Open
+County of Hawaii,,Camp 2,,,,,,,19.73429843,-155.4764555,,,Open
+County of Hawaii,,Camp 3,,,,,,,19.72188884,-155.8219755,,,Open
+United Way,,Camp 4,,,,,,,19.4361988,-155.4284818,,,Open
+United Way,,Camp 5,,,,,,,19.86282092,-155.2946317,,,Open
+United Way,,Camp 6,,,,,,,,,,,Open
+County of Hawaii,,Camp 7,,,,,,,,,,,Closed
+County of Hawaii,,Camp 8,,,,,,,,,,,Closed
+County of Hawaii,,Camp 9,,,,,,,,,,,Closed
+County of Hawaii,,Camp 10,,,,,,,,,,,Closed

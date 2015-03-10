@@ -165,7 +165,7 @@ class index(S3CustomController):
                   "icon":"globe",
                   "description":T("The Main Sahana Map displays multiple layers of information from Sahana and external sources."),
                   "module":"gis",
-                  "function":"Index",
+                  "function":"index",
                   "args":None,
                   "buttons":[]
                   },

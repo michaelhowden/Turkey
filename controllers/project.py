@@ -16,12 +16,8 @@ mode_task = settings.get_project_mode_task()
 def index():
     """ Module's Home Page """
 
-    if mode_task:
-        # Bypass home page & go direct to browsing Tasks for a Project
-        redirect(URL(f="project", vars={"tasks":1}))
-    else:
-        # Bypass home page & go direct to filterable list of Projects
-        redirect(URL(f="project", args="summary"))
+    # Bypass home page & go direct to filterable list of Projects
+    redirect(URL(f="project", args="summary"))
 
 # =============================================================================
 def create():

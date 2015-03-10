@@ -1,5 +1,9 @@
-"Organisation","Branch","Resource Type","Country","L1","L2","L3","L4","Quantity","Comments"
-"Mahalle Afet Gönüllüleri Vakfı",,"MEDICAL GLOVES","TR",,,,,50,
-"Mahalle Afet Gönüllüleri Vakfı",,"GLOVES","TR",,,,,50,
-"Mahalle Afet Gönüllüleri Vakfı",,"PROTECTIVE GOGGLES","TR",,,,,100,
-"Mahalle Afet Gönüllüleri Vakfı",,"MASK","TR",,,,,100,
+Organisation,Branch,Resource Type,Country,L1,L2,L3,L4,Quantity,Comments
+United Way,,Generators,United States,Hawaii,Hawaii,,,50,
+County of Hawaii,,Chain Saws,United States,Hawaii,Honolulu,,,50,
+County of Hawaii,,MREs,United States,Hawaii,Kalawao,,,100,
+United Way,,Blankets,United States,Hawaii,Kauai,,,100,
+United Way,,Chain Saws,United States,Hawaii,Hawaii,,,75,
+United Way,,MREs,United States,Hawaii,Honolulu,,,20,
+County of Hawaii,,Blankets,United States,Hawaii,Kalawao,,,5,
+County of Hawaii,,Mobile Kitchen,United States,Hawaii,Kauai,,,2,

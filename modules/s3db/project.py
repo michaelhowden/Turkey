@@ -60,7 +60,6 @@ __all__ = ("S3ProjectModel",
            "project_jnap_opts",
            "project_pifacc_opts",
            "project_rfa_opts",
-           "project_project_filters",
            "project_project_list_layout",
            "project_task_list_layout",
            "project_TaskRepresent",
@@ -247,8 +246,7 @@ class S3ProjectModel(S3Model):
             msg_record_deleted = T("Project deleted"),
             msg_list_empty = T("No Projects currently registered"))
 
-        # Filter widgets
-        filter_widgets = project_project_filters(org_label=org_label)
+
 
         # Resource Configuration
         if settings.get_project_theme_percentages():
@@ -265,34 +263,147 @@ class S3ProjectModel(S3Model):
             # Default
             create_next = None
 
+        # List Fields, Filter widgets & Report Options
         list_fields = ["id"]
-        append = list_fields.append
+                       
+        filter_widgets = [
+           S3OptionsFilter("status_id",
+                            label = T("Status"),
+                            cols = 4,
+                            ),
+            S3OptionsFilter("organisation_id",
+                            label = org_label,
+                            # Can be unhidden in customise_xx_resource if there is a need to use a default_filter
+                            hidden = True,
+                            ),
+                          ]
+        report_fields = ["status_id",
+                         "organisation_id"]
+        text_filter_fields = ["description"]
+        
+        append_list_fields = list_fields.append
+        append_filter_widgets = filter_widgets.append
+        append_report_fields = report_fields.append
+        append_text_filter_fields = text_filter_fields.append
+
         if use_codes:
-            append("code")
-        append("name")
-        append("organisation_id")
+            append_list_fields("code")
+            append_text_filter_fields("code")
+
+        list_fields += ["name",
+                        "status_id",
+                        "oganisation_id"]
+        text_filter_fields += ["name",
+                               "status_id",
+                               "organisation_id"]
+
         if mode_3w:
-            append((T("Locations"), "location.location_id"))
-        if use_sectors:
-            append((T("Sectors"), "sector.name"))
+            # Which levels of Hierarchy are we using?
+            levels = current.gis.get_relevant_hierarchy_levels()
+            for level in levels:
+                lfield = "location.location_id$%s" % level
+                append_list_fields(lfield)
+                append_report_fields(lfield)
+                append_text_filter_fields(lfield)
+            append_list_fields((T("Location"), "location.location_id"))
+
+            S3LocationFilter("location.location_id",
+                             # Default should introspect
+                             levels = levels,
+                             hidden = True,
+                             )
+
+        if settings.get_project_sectors():
+            if settings.get_ui_label_cluster():
+                sector = T("Cluster")
+            else:
+                sector = T("Sector")
+            append_list_fields((sector, "sector.name"))
+            append_filter_widgets(S3OptionsFilter("sector_project.sector_id",
+                                                  label = sector,
+                                                  location_filter = True,
+                                                  none = True,
+                                                  hidden = True,)
+                                  )
+            append_report_fields((sector, "sector.name"))
+            append_text_filter_fields("sector.name")
+    
+        mode_drr = settings.get_project_mode_drr()
         if mode_drr:
-            append((T("Hazards"), "hazard.name"))
-            #append("drr.hfa")
-        append((T("Themes"), "theme.name"))
+            append_list_fields((T("Hazards"), "hazard.name"))
+            append_filter_widgets(S3OptionsFilter("hazard_project.hazard_id",
+                                                  label = T("Hazard"),
+                                                  help_field = project_hazard_help_fields,
+                                                  cols = 4,
+                                                  hidden = True,)
+                                                  )
+            append_report_fields((T("Hazards"), "hazard.name"))
+            append_text_filter_fields("hazard.name")
+    
+        if settings.get_project_mode_3w():
+            append_list_fields((T("Themes"), "theme.name"))
+            append_filter_widgets(S3OptionsFilter("theme_project.theme_id",
+                                                  label = T("Theme"),
+                                                  help_field = project_theme_help_fields,
+                                                  cols = 4,
+                                                  hidden = True,)
+                                  )
+            append_report_fields((T("Themes"), "theme.name"))
+            append_text_filter_fields("theme.name")
+    
+        if mode_drr:
+            hfa_opts = project_hfa_opts()
+            options = dict((key, "HFA %s" % key) for key in hfa_opts)
+            #options[None] = current.messages["NONE"] # to search NO HFA
+            append_list_fields("drr.hfa")
+            append_filter_widgets(S3OptionsFilter("drr.hfa",
+                                                  label = T("HFA"),
+                                                  options = options,
+                                                  help_field = hfa_opts,
+                                                  cols = 5,
+                                                  hidden = True,)
+                                  )
+            append_report_fields("drr.hfa")
+            append_text_filter_fields("drr.hfa")
+            
+    
+        if settings.get_project_multiple_organisations():
+            append_list_fields("partner.organisation_id")
+            append_filter_widgets(S3OptionsFilter("partner.organisation_id",
+                                                  label = T("Partners"),
+                                                  hidden = True,)
+                                  )
+            append_report_fields("partner.organisation_id")
+            append_text_filter_fields("partner.organisation_id")
+            
+            append_list_fields("donor.organisation_id")
+            append_filter_widgets(S3OptionsFilter("donor.organisation_id",
+                                                  label = T("Donors"),
+                                                  hidden = True,)
+                                  )
+            append_report_fields("donor.organisation_id")
+            append_text_filter_fields("donor.organisation_id")
+
         if multi_orgs:
-            append((T("Total Funding Amount"), "total_organisation_amount"))
+            append_list_fields((T("Total Funding Amount"), "total_organisation_amount"))
         if multi_budgets:
-            append((T("Total Annual Budget"), "total_annual_budget"))
+            append_list_fields((T("Total Annual Budget"), "total_annual_budget"))
         list_fields += ["start_date",
                         "end_date",
-                        "location.location_id",
                         ]
 
-        report_fields = list_fields
-        report_col_default = "location.location_id"
-        report_fact_fields = [(field, "count") for field in report_fields]
-        report_fact_default = "project.organisation_id"
-        #report_fact_default = "theme.name"
+        filter_widgets = [S3TextFilter(text_filter_fields,
+                                       label = T("Search"),
+                                       comment = T("Search for a Project."),)
+                          ] + filter_widgets
+
+        report_options = Storage(rows = report_fields,
+                                 cols = report_fields,
+                                 fact = ["id","name"] + report_fields,
+                                 defaults = Storage(rows = "organisation_id",
+                                                    cols = "status_id",
+                                                    fact = "count(id)"),
+                                 totals = True,)
 
         configure(tablename,
                   context = {"location": "location.location_id",
@@ -317,18 +428,7 @@ class S3ProjectModel(S3Model):
                                       "document",
                                       "image",
                                       ),
-                  report_options = Storage(
-                    rows=report_fields,
-                    cols=report_fields,
-                    fact=report_fact_fields,
-                    defaults=Storage(
-                        rows="hazard.name",
-                        cols=report_col_default,
-                        fact=report_fact_default,
-                        aggregate="count",
-                        totals=True
-                    )
-                  ),
+                  report_options = report_options,
                   super_entity = "doc_entity",
                   update_realm = True,
                   )
@@ -4219,8 +4319,6 @@ class S3ProjectTaskModel(S3Model):
                      self.gis_location_id(
                             # Can be enabled & labelled within a Template as-required
                             #label = T("Deployment Location"),
-                            readable = False,
-                            writable = False
                             ),
                      Field("source",
                            label = T("Source"),
@@ -4382,6 +4480,7 @@ class S3ProjectTaskModel(S3Model):
                                          ))
 
         crud_fields.extend(("name",
+                            "location_id",
                             "description",
                             "source",
                             "priority",
@@ -6063,7 +6162,7 @@ def project_rheader(r):
             append((T("Organizations"), "organisation"))
         if settings.get_project_community():
             append((T("Communities"), "location"))
-        elif not mode_task:
+        elif mode_3w:
             append((T("Locations"), "location"))
         if settings.get_project_theme_percentages():
             append((T("Themes"), "theme"))
@@ -6497,108 +6596,6 @@ def project_rfa_opts():
         5: T("RFA5: Effective, Integrated and People-Focused Early Warning Systems"),
         6: T("RFA6: Reduction of Underlying Risk Factors"),
     }
-
-# =============================================================================
-def project_project_filters(org_label):
-    """
-        Filter widgets for project_project
-
-        @param org_label: the label to use for organisation_id
-    """
-
-    T = current.T
-    settings = current.deployment_settings
-
-    filter_widgets = [
-        S3TextFilter(["name",
-                      "code",
-                      "description",
-                     ],
-                     label = T("Search"),
-                     comment = T("Search for a Project by name, code, or description."),
-                     ),
-        S3OptionsFilter("status_id",
-                        label = T("Status"),
-                        cols = 4,
-                        ),
-        S3OptionsFilter("organisation_id",
-                        label = org_label,
-                        # Can be unhidden in customise_xx_resource if there is a need to use a default_filter
-                        hidden = True,
-                        ),
-        S3LocationFilter("location.location_id",
-                         # Default should introspect
-                         #levels = ("L0", "L1", "L2"),
-                         hidden = True,
-                         )
-        ]
-
-    append_filter = filter_widgets.append
-
-    if settings.get_project_sectors():
-        if settings.get_ui_label_cluster():
-            sector = T("Cluster")
-        else:
-            sector = T("Sector")
-        append_filter(
-            S3OptionsFilter("sector_project.sector_id",
-                            label = sector,
-                            location_filter = True,
-                            none = True,
-                            hidden = True,
-                            )
-        )
-
-    mode_drr = settings.get_project_mode_drr()
-    if mode_drr:
-        append_filter(
-            S3OptionsFilter("hazard_project.hazard_id",
-                            label = T("Hazard"),
-                            help_field = project_hazard_help_fields,
-                            cols = 4,
-                            hidden = True,
-                            )
-        )
-
-    if settings.get_project_mode_3w():
-        append_filter(
-            S3OptionsFilter("theme_project.theme_id",
-                            label = T("Theme"),
-                            help_field = project_theme_help_fields,
-                            cols = 4,
-                            hidden = True,
-                            )
-        )
-
-    if mode_drr:
-        hfa_opts = project_hfa_opts()
-        options = dict((key, "HFA %s" % key) for key in hfa_opts)
-        #options[None] = current.messages["NONE"] # to search NO HFA
-        append_filter(
-            S3OptionsFilter("drr.hfa",
-                            label = T("HFA"),
-                            options = options,
-                            help_field = hfa_opts,
-                            cols = 5,
-                            hidden = True,
-                            )
-        )
-
-    if settings.get_project_multiple_organisations():
-        append_filter(
-            S3OptionsFilter("partner.organisation_id",
-                            label = T("Partners"),
-                            hidden = True,
-                            )
-        )
-        append_filter(
-            S3OptionsFilter("donor.organisation_id",
-                            label = T("Donors"),
-                            hidden = True,
-                            )
-        )
-
-    return filter_widgets
 
 # =============================================================================
 def project_project_list_layout(list_id, item_id, resource, rfields, record,

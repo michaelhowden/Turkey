@@ -1559,11 +1559,16 @@ class S3OptionsMenu(object):
                     )
             else:
                 menu(
-                     M("Projects", f="project")(
+                     M("Projects", f="project", m="summary")(
                         M("Create", m="create"),
                         M("Map", f="location", m="map"),
                      )
                     )
+            menu(
+                 M("Tasks", f="task", m="summary")(
+                    M("Create", m="create"),
+                 )
+                )
             menu(
                  M("Reports", f="location", m="report")(
                     M("3W", f="location", m="report"),

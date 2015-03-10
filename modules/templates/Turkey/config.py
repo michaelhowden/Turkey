@@ -135,6 +135,8 @@ def config(settings):
     settings.project.mode_3w = True
     # Uncomment this to use DRR (Disaster Risk Reduction) extensions
     settings.project.mode_drr = True
+    
+    settings.project.mode_task = True
 
     settings.gis.geocode_imported_addresses = "google"
     # -------------------------------------------------------------------------
@@ -226,13 +228,13 @@ def config(settings):
             restricted = True,
             module_type = 10,
         )),
-        #("msg", Storage(
-        #    name_nice = T("Messaging"),
-        #    #description = "Sends & Receives Alerts via Email & SMS",
-        #    restricted = True,
-        #    # The user-visible functionality of this module isn't normally required. Rather it's main purpose is to be accessed from other modules.
-        #    module_type = None,
-        #)),
+        ("msg", Storage(
+            name_nice = T("Messaging"),
+            #description = "Sends & Receives Alerts via Email & SMS",
+            restricted = True,
+            # The user-visible functionality of this module isn't normally required. Rather it's main purpose is to be accessed from other modules.
+            module_type = None,
+        )),
         ("supply", Storage(
             name_nice = T("Supply Chain Management"),
             #description = "Used within Inventory Management, Request Management and Asset Management",
@@ -294,12 +296,12 @@ def config(settings):
         #   restricted = True,
         #   module_type = 10,
         #)),
-        #("event", Storage(
-        #    name_nice = T("Events"),
-        #    #description = "Activate Events (e.g. from Scenario templates) for allocation of appropriate Resources (Human, Assets & Facilities).",
-        #    restricted = True,
-        #    module_type = 10,
-        #)),
+        ("event", Storage(
+            name_nice = T("Events"),
+            #description = "Activate Events (e.g. from Scenario templates) for allocation of appropriate Resources (Human, Assets & Facilities).",
+            restricted = True,
+            module_type = 10,
+        )),
         #("transport", Storage(
         #   name_nice = T("Transport"),
         #   restricted = True,
