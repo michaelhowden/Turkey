@@ -1,15 +1,17 @@
 Name,Description,Controller,Function,Marker,GPS Marker,Popup Format,Attributes,Filter,Site,Points,Trackable,Style,Opacity,Folder,Visible,Enabled,Cluster Threshold,Refresh
-Assets,,asset,asset,asset,Flag,{number} (T('Asset'))<br />{person_id},"number,person_id",,,True,True,,,,False,,,
-Camps,All Active Camps,cr,shelter,shelter,Campground,{name} (T('Shelter'))<br />T('Population') {population}<br />T('Capacity') {capacity_day},"name,population,capacity_day",~.status__ne=1,,True,,,,,False,,,
-Demographics,For summary page,stats,demographic_data,,,{location_id}: {value},"location_id,value",,,,,"[{'prop':'value','fillOpacity':0.5}]",0.5,,False,False,0,0
-Heliports,All Active Heliports,transport,heliport,helicopter,Heliport,{name} (T('Heliport')),name,~.obsolete=False,,True,,,,,False,,,
-Hospitals,All Active Medical Facilities,hms,hospital,hospital,Medical Facility,{name} (T('Hospital')),name,~.obsolete=False,,True,,,,,False,,,
-Locations,Used by Location Details,gis,location,,,{name},"name,gis_feature_type",~.level__ne=None&~.end_date=None,,,,"[{'prop':'gis_feature_type','cat':1,'externalGraphic':'img/markers/marker_red.png'},{'prop':'gis_feature_type','cat':3,'fill':'00BFFF','fillOpacity':0.5},{'prop':'gis_feature_type','cat':6,'fill':'00BFFF','fillOpacity':0.5}]",0.9,,False,,0,0
-Offices,All Active Offices,org,office,office,Building,{name} (T('Office'))<br />{organisation_id},"name,organisation_id",~.obsolete=False,,True,,,,,False,,,
-PoIs,,gis,poi,,,{name} ({poi_type_id}),"name,poi_type_id",,,True,,,,,,False,,
-Projects,,project,location,project,,{name} (T('Project'))<br />{location_id}<br />{multi_activity_type_id},"name,location_id,multi_activity_type_id",,,,,,,,False,,,
-Requests,All Open Requests,req,req,request,"Navaid, Red",{req_ref} (T('Request'))<br />{site_id},"req_ref,site_id",~.fulfil_status__ne=2,True,,,,,,False,,,
-Staff,All Active Staff,hrm,staff,staff,"Contact, Dreadlocks",{person_id} (T('Volunteer'))<br />{job_title_id}<br />{organisation_id},"person_id,job_title_id,organisation_id",~.status=1,,True,True,,,,False,,,
-Training Events,Used for Search Results,hrm,training_event,,,{course_id} (T('Training Event'))<br />{site_id}<br />{start_date},"course_id,site_id,start_date",,,True,,,,,False,False,,
-Volunteers,All Active Volunteers,vol,volunteer,volunteer,"Contact, Dreadlocks",{person_id} (T('Volunteer'))<br />{organisation_id},"person_id,organisation_id",~.status=1,,True,True,,,,False,,,
-Warehouses,All Active Warehouses,inv,warehouse,warehouse,Building,{name} (T('Warehouse'))<br />{organisation_id},"name,organisation_id",~.obsolete=False,,True,,,,,False,,,
+Assets,,asset,asset,asset,Flag,{number} (T('Asset'))<br />{person_id},"number,person_id",,,TRUE,TRUE,,,,FALSE,,,
+Camps,All Active Camps,cr,shelter,shelter,Campground,{name} (T('Shelter'))<br />T('Population') {population}<br />T('Capacity') {capacity_day},"name,population,capacity_day",~.status__ne=1,,TRUE,,,,,FALSE,,,
+Demographics,For summary page,stats,demographic_data,,,{location_id}: {value},"location_id,value",,,,,"[{'prop':'value','fillOpacity':0.5}]",0.5,,FALSE,FALSE,0,0
+Heliports,All Active Heliports,transport,heliport,helicopter,Heliport,{name} (T('Heliport')),name,~.obsolete=False,,TRUE,,,,,FALSE,,,
+Hospitals,All Active Medical Facilities,hms,hospital,hospital,Medical Facility,{name} (T('Hospital')),name,~.obsolete=False,,TRUE,,,,,FALSE,,,
+Locations,Used by Location Details,gis,location,,,{name},"name,gis_feature_type",~.level__ne=None&~.end_date=None,,,,"[{'prop':'gis_feature_type','cat':1,'externalGraphic':'img/markers/marker_red.png'},{'prop':'gis_feature_type','cat':3,'fill':'00BFFF','fillOpacity':0.5},{'prop':'gis_feature_type','cat':6,'fill':'00BFFF','fillOpacity':0.5}]",0.9,,FALSE,,0,0
+Offices,All Active Offices,org,office,office,Building,{name} (T('Office'))<br />{organisation_id},"name,organisation_id",~.obsolete=False,,TRUE,,,,,FALSE,,,
+PoIs,,gis,poi,,,{name} ({poi_type_id}),"name,poi_type_id",,,TRUE,,,,,,FALSE,,
+Projects,,project,location,project,,{name} (T('Project'))<br />{location_id}<br />{multi_activity_type_id},"name,location_id,multi_activity_type_id",,,,,,,,FALSE,,,
+Tasks,,project,task,,,{name},name,,,TRUE,,,,,FALSE,,,
+Incidents,,event,incident,,,{name},name,,,TRUE,,,,,FALSE,,,
+Requests,All Open Requests,req,req,request,"Navaid, Red",{req_ref} (T('Request'))<br />{site_id},"req_ref,site_id",~.fulfil_status__ne=2,TRUE,,,,,,FALSE,,,
+Staff,All Active Staff,hrm,staff,staff,"Contact, Dreadlocks",{person_id} (T('Volunteer'))<br />{job_title_id}<br />{organisation_id},"person_id,job_title_id,organisation_id",~.status=1,,TRUE,TRUE,,,,FALSE,,,
+Training Events,Used for Search Results,hrm,training_event,,,{course_id} (T('Training Event'))<br />{site_id}<br />{start_date},"course_id,site_id,start_date",,,TRUE,,,,,FALSE,FALSE,,
+Volunteers,All Active Volunteers,vol,volunteer,volunteer,"Contact, Dreadlocks",{person_id} (T('Volunteer'))<br />{organisation_id},"person_id,organisation_id",~.status=1,,TRUE,TRUE,,,,FALSE,,,
+Warehouses,All Active Warehouses,inv,warehouse,warehouse,Building,{name} (T('Warehouse'))<br />{organisation_id},"name,organisation_id",~.obsolete=False,,TRUE,,,,,FALSE,,,
